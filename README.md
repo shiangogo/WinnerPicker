@@ -1,24 +1,14 @@
-# README
+# WinnerPicker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple Linebot that can be used to select one or multiple member(s) in a Line group.
 
-Things you may want to cover:
+# Warning:
 
-* Ruby version
+This linebot is still in the development phase, and the main functionalities have not been fully implemented yet, or might have some issues. Please take note of the followings:
 
-* System dependencies
+- The functionalities are not yet fully refined, and there could be errors or unexpected behavior.The
+- Active development and testing are currently ongoing, with continuous improvement of features and performance.
 
-* Configuration
+**Important:** It is advisable not to deploy this project in a production environment; it's exclusively intended for testing and learning purposes.
+- **Commercial Use Restriction:** WinnerPicker should not be utilized for commercial purposes.
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
