@@ -18,10 +18,34 @@ class LineBotController < ApplicationController
             type: 'text',
             text: event.message['text']
           }
-          p "################################"
-          p event.message
-          p "################################"
-          client.reply_message(event['replyToken'], message)
+
+          if event.message['text'].start_with?('抽') && event['source']['type'] == 'group'
+            input_string = event.message['text'].sub(/^抽\s*/, "")
+            if input_string.blank?
+              return
+            end
+            names_and_weights = input_string.split.map do |pair|
+              if pair.include?(':')
+                name, weight = pair.split(':')
+                weight = weight.try(:to_i) || 1
+                next [name, weight]
+              end
+              next [pair, 1]
+            end
+            total_weight = names_and_weights.map { |pair| pair[1] }.sum
+            random_number = rand(0...total_weight)
+
+            selected_name = nil
+            current_weight = 0
+            names_and_weights.each do |pair|
+              current_weight += pair[1]
+              if random_number < current_weight
+                selected_name = pair[0]
+                break
+              end
+            end
+            client.reply_message(event['replyToken'], {type: "text", text: "抽到的是#{selected_name}，恭喜恭喜！"})
+          end
         end
       end
     end
